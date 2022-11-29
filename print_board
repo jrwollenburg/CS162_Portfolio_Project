@@ -1,0 +1,45 @@
+INCOMPLETE INCOMPLETE INCOMPLETE INCOMPLETE INCOMPLETE
+
+def print_board(token_spaces):
+    """
+    Prints the board in a rudimentary fashion after each round. Takes a list of the spaces that the tokens are on and
+    uses that to add the tokens to the board.
+    """
+    # top row
+    game_spaces = list(range(1, 57, 1))
+    inner_horiz = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'E', 'C6', 'C5', 'C4', 'C3', 'C2', 'C1']
+    inner_vert = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'E', 'D6', 'D5', 'D4', 'D3', 'D2', 'D1']
+    board_tokens = ['ap', 'aq', 'bp', 'bq', 'cp', 'cq', 'dp', 'dq']
+    for token in token_spaces.keys():
+        token_vis = board_tokens[token_spaces.index(token)]
+        if token in game_spaces:
+            game_spaces[game_spaces.index(token)] = token_vis
+        elif token in inner_horiz:
+            if token == 'E':
+                inner_horiz[inner_horiz.index(token)] = token_vis
+            else:
+                inner_horiz[inner_horiz.index(token)] = token_vis
+        elif token in inner_vert:
+            inner_vert[inner_vert.index(token)] = token_vis
+    print('', game_spaces[0], '', game_spaces[1], '', game_spaces[2], '', game_spaces[3], '', game_spaces[4], '',
+          game_spaces[5], '', game_spaces[6], '', game_spaces[7], '', game_spaces[8], game_spaces[9],
+          game_spaces[10], game_spaces[11], game_spaces[12], game_spaces[13], game_spaces[14])
+    # inner cross and sides
+    left_count = 55
+    right_count = 15
+    vert_count = 0
+    while left_count >= 43:
+        if left_count == 49:
+            print(game_spaces[left_count], inner_horiz[0], inner_horiz[1], inner_horiz[2], inner_horiz[3],
+                  inner_horiz[4], inner_horiz[5], '', inner_horiz[6], inner_horiz[7], inner_horiz[8], inner_horiz[9],
+                  inner_horiz[10], inner_horiz[11], inner_horiz[12], game_spaces[right_count])
+        else:
+            print(game_spaces[left_count], "                 ", inner_vert[vert_count], "                 ",
+                  game_spaces[right_count])
+        left_count -= 1
+        right_count += 1
+        vert_count += 1
+    # bottom row of board
+    print(game_spaces[42], game_spaces[41], game_spaces[40], game_spaces[39], game_spaces[38], game_spaces[37],
+          game_spaces[36], game_spaces[35], game_spaces[34], game_spaces[33], game_spaces[32], game_spaces[31],
+          game_spaces[30], game_spaces[29], game_spaces[28])
